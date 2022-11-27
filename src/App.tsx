@@ -1,4 +1,5 @@
-import Person from './components/Person.jsx';
+import Attendee from './components/Attendee.js';
+import Candidate from './components/Candidate.js';
 
 const people = [
   {
@@ -41,8 +42,8 @@ function App() {
           />
 
           <div className="absolute top-9 w-72 bg-rise-grayscale-white drop-shadow-elevation-400 rounded-lg px-1 py-1 space-y-1">
-            <Person key="2" {...people[2]} />
-            <Person key="3" {...people[3]} />
+            <Candidate key="2" {...people[2]} />
+            <Candidate key="3" {...people[3]} />
           </div>
         </form>
         <div className="flex mt-4">
@@ -51,7 +52,7 @@ function App() {
           </div>
           <div className="space-y-1">
             {people.map((person) => (
-              <Person key={person.id.toString()} {...person} />
+              <Attendee key={person.id.toString()} {...person} />
             ))}
           </div>
         </div>
