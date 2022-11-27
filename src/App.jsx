@@ -1,8 +1,32 @@
-import { useState } from 'react'
-import avatar1 from './assets/avatars/1.jpeg'
-import avatar2 from './assets/avatars/2.jpeg'
-import checkMarkCircle from './assets/icons/Checkmark-Circle.svg'
-import './App.css'
+import Person from './components/Person.jsx'
+
+const people = [
+  {
+    name: "Rick Pastoor",
+    email: "rick@risecalendar.com",
+    avatarFilename: "1.jpeg"
+  },
+  {
+    name: "Willem Spruijt",
+    email: "willem@risecal.com",
+    avatarFilename: "2.jpeg"
+  },
+  {
+    name: "Robin van Dijke",
+    email: "robin@risecal.com",
+    avatarFilename: "3.jpeg"
+  },
+  {
+    name: "Jelle Prins",
+    email: "jelle@risecal.com",
+    avatarFilename: "4.jpeg"
+  },
+  {
+    name: "Emiel Janson",
+    email: "emiel@risecalendar.com",
+    avatarFilename: "5.jpeg"
+  },
+]
 
 function App() {
   return (
@@ -15,26 +39,9 @@ function App() {
         <div className="flex mt-4">
           <div className="w-20 mr-2 text-s text-rise-grayscale-gray600 font-medium">Attendees</div>
           <ul className="space-y-1">
-            <li className="flex items-center w-[200px] py-1">
-              <img src={avatar1} className="h-6 w-6 mx-2 rounded-full" />
-              <div>
-                <div className="text-s font-medium leading-none">Emiel Janson</div>
-                <div className="flex leading-none pt-[1px]">
-                  <img className="w-3 h-3" src={checkMarkCircle} />
-                  <span className="ml-[2px] mt-[1px] text-xxs text-rise-grayscale-gray600 font-medium">Available</span>
-                </div>
-              </div>
-            </li>
-            <li className="flex items-center w-[200px] py-1">
-              <img src={avatar2} className="h-6 w-6 mx-2 rounded-full" />
-              <div>
-                <div className="text-s font-medium leading-none">Rick Pastoor</div>
-                <div className="flex leading-none pt-[1px]">
-                  <img className="w-3 h-3" src={checkMarkCircle} />
-                  <span className="ml-[2px] mt-[1px] text-xxs text-rise-grayscale-gray600 font-medium">Available</span>
-                </div>
-              </div>
-            </li>
+            {people.map((person) =>
+              <Person { ...person } />
+            )}
           </ul>
         </div>
       </aside>
