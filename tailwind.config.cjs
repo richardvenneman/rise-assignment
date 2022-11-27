@@ -19,6 +19,11 @@ module.exports = {
         primary: '#7161EC',
       },
     },
+    fontSize: {
+      ...defaultTheme.fontSize,
+      xxs: '0.6875rem',
+      s: '0.8125rem',
+    },
     fontFamily: {
       sans: ['Inter', ...defaultTheme.fontFamily.sans]
     },
