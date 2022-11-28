@@ -31,7 +31,7 @@ export default class EventStore {
       return (
         !this.attendees.find((attendee) => {
           return attendee.id === person.id;
-        }) && person.name.toLowerCase().includes(this.name.toLowerCase())
+        }) && person.firstName.toLowerCase().includes(this.name.toLowerCase())
       );
     });
   }

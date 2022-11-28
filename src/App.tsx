@@ -7,28 +7,39 @@ function getPeople() {
   return [
     {
       id: 1,
-      name: 'Rick Pastoor',
+      firstName: 'Rick',
+      lastName: 'Pastoor',
       email: 'rick@risecalendar.com',
     },
     {
       id: 2,
-      name: 'Willem Spruijt',
+      firstName: 'Willem',
+      lastName: 'Spruijt',
       email: 'willem@risecal.com',
     },
     {
       id: 3,
-      name: 'Robin van Dijke',
+      firstName: 'Robin',
+      lastName: 'van Dijke',
       email: 'robin@risecal.com',
     },
     {
       id: 4,
-      name: 'Jelle Prins',
+      firstName: 'Jelle',
+      lastName: 'Prins',
       email: 'jelle@risecal.com',
     },
     {
       id: 5,
-      name: 'Emiel Janson',
+      firstName: 'Emiel',
+      lastName: 'Janson',
       email: 'emiel@risecalendar.com',
+    },
+    {
+      id: 6,
+      firstName: 'Richard',
+      lastName: 'Venneman',
+      email: 'richardvenneman@me.com',
     },
   ];
 }

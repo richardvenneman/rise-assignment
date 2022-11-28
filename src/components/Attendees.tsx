@@ -10,7 +10,7 @@ function Attendees() {
   return (
     <>
       {attendees.map((attendee: Person) => (
-        <Attendee key={attendee.id.toString()} {...attendee} />
+        <Attendee key={attendee.id.toString()} person={attendee} />
       ))}
     </>
   );
