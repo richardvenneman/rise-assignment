@@ -1,49 +1,81 @@
 import { Observer } from 'mobx-react-lite';
 
-import Attendee from './components/Attendee.js';
-import Candidate from './components/Candidate.js';
-import EventName from './components/EventName.js';
-import { useStore } from './store';
+import Attendee from './components/Attendee';
+import Candidate from './components/Candidate';
+import EventName from './components/EventName';
+import { EventStoreProvider, useEventStore } from './EventStore';
+import Person from './types/Person';
+
+function getPeople() {
+  return [
+    {
+      id: 1,
+      name: 'Rick Pastoor',
+      email: 'rick@risecalendar.com',
+    },
+    {
+      id: 2,
+      name: 'Willem Spruijt',
+      email: 'willem@risecal.com',
+    },
+    {
+      id: 3,
+      name: 'Robin van Dijke',
+      email: 'robin@risecal.com',
+    },
+    {
+      id: 4,
+      name: 'Jelle Prins',
+      email: 'jelle@risecal.com',
+    },
+    {
+      id: 5,
+      name: 'Emiel Janson',
+      email: 'emiel@risecalendar.com',
+    },
+  ];
+}
 
 const App = () => {
-  const { eventStore } = useStore();
+  const people = getPeople();
 
   return (
-    <Observer>
-      {() => {
-        const attendees = eventStore.attendees;
-        const suggestions = eventStore.attendeeSuggestions;
+    <EventStoreProvider people={people}>
+      <Observer>
+        {() => {
+          const { attendees, suggestions } = useEventStore();
 
-        return (
-          <div className="flex flex-wrap h-screen">
-            <main className="md:flex-auto"></main>
-            <aside className="bg-rise-grayscale-white flex-initial px-4 py-6 w-full md:w-80">
-              <form className="relative overflow-visible" autoComplete="off">
-                <EventName />
+          return (
+            <div className="flex flex-wrap h-screen">
+              <main className="md:flex-auto"></main>
+              <aside className="bg-rise-grayscale-white flex-initial px-4 py-6 w-full md:w-80">
+                <form className="relative overflow-visible" autoComplete="off">
+                  <EventName />
 
-                {!!suggestions && suggestions.length > 0 && (
-                  <div className="absolute top-9 w-72 bg-rise-grayscale-white drop-shadow-elevation-400 rounded-lg px-1 py-1 space-y-1">
-                    {suggestions.map((person) => (
-                      <Candidate key={person.id.toString()} {...person} />
+                  {!!suggestions && suggestions.length > 0 && (
+                    <div className="absolute top-9 w-72 bg-rise-grayscale-white drop-shadow-elevation-400 rounded-lg px-1 py-1 space-y-1">
+                      {suggestions.map((person: Person) => (
+                        <Candidate key={person.id.toString()} {...person} />
+                      ))}
+                    </div>
+                  )}
+                </form>
+                <div className="flex mt-4">
+                  <div className="w-20 mr-2 text-s text-rise-grayscale-gray600 font-medium">
+                    Attendees
+                  </div>
+                  <div className="space-y-1">
+                    {attendees.map((attendee: Person) => (
+                      <Attendee key={attendee.id.toString()} {...attendee} />
                     ))}
                   </div>
-                )}
-              </form>
-              <div className="flex mt-4">
-                <div className="w-20 mr-2 text-s text-rise-grayscale-gray600 font-medium">
-                  Attendees
                 </div>
-                <div className="space-y-1">
-                  {attendees.map((attendee) => (
-                    <Attendee key={attendee.id.toString()} {...attendee} />
-                  ))}
-                </div>
-              </div>
-            </aside>
-          </div>
-        );
-      }}
-    </Observer>
+              </aside>
+            </div>
+          );
+        }}
+      </Observer>
+    </EventStoreProvider>
   );
 };
 

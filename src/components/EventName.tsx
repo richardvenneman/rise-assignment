@@ -1,7 +1,7 @@
-import { useStore } from '../store';
+import { useEventStore } from '../EventStore';
 
 function EventName() {
-  const { eventStore } = useStore();
+  const { setName } = useEventStore();
 
   return (
     <input
@@ -9,7 +9,7 @@ function EventName() {
       className="caret-rise-primary font-bold text-xl w-full placeholder:text-rise-grayscale-gray400 focus:outline-none"
       placeholder="Event name"
       onChange={(e) => {
-        eventStore.title = e.target.value;
+        setName(e.target.value);
       }}
     />
   );

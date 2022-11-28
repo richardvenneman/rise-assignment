@@ -1,18 +1,13 @@
-import { useStore } from '../store';
+import { useEventStore } from '../EventStore';
 import Person from '../types/Person';
 
 function Candidate({ id, name, email }: Person) {
-  const { eventStore } = useStore();
+  const { addAttendee } = useEventStore();
   const avatar = new URL(`../assets/avatars/${id}.jpeg`, import.meta.url).href;
-
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-    eventStore.addAttendee = id;
-  };
 
   return (
     <button
-      onClick={handleClick}
+      onClick={(e) => addAttendee(id)}
       className="flex items-center text-left py-1 rounded-lg w-full hover:bg-rise-grayscale-gray50"
     >
       <img src={avatar} className="h-6 w-6 mx-2 rounded-full" alt={name} />
