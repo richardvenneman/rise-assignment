@@ -21,8 +21,12 @@ export default class EventStore {
     }
   };
 
+  get nameLastWord(): string {
+    return this.name.split(' ').pop() || '';
+  }
+
   get shouldSuggest(): boolean {
-    return this.name.length > 2;
+    return this.nameLastWord.length > 2;
   }
 
   suggestions: Person[] = [];
@@ -31,7 +35,7 @@ export default class EventStore {
       return (
         !this.attendees.find((attendee) => {
           return attendee.id === person.id;
-        }) && person.firstName.toLowerCase().includes(this.name.toLowerCase())
+        }) && person.firstName.toLowerCase().includes(this.nameLastWord.toLowerCase())
       );
     });
   }
@@ -44,6 +48,11 @@ export default class EventStore {
 
     if (attendee) {
       this.attendees.push(attendee);
+      this.suggestions = [];
+
+      const lastWordIndex = this.name.lastIndexOf(this.nameLastWord);
+      const newName = this.name.substring(0, lastWordIndex) + attendee.firstName;
+      this.name = newName;
     }
   };
 }
