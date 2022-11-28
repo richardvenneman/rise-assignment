@@ -2,13 +2,11 @@ import { Observer } from 'mobx-react-lite';
 
 import Attendee from './components/Attendee.js';
 import Candidate from './components/Candidate.js';
+import EventName from './components/EventName.js';
 import { useStore } from './store';
 
 const App = () => {
   const { eventStore } = useStore();
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    eventStore.title = e.target.value;
-  };
 
   return (
     <Observer>
@@ -21,12 +19,7 @@ const App = () => {
             <main className="md:flex-auto"></main>
             <aside className="bg-rise-grayscale-white flex-initial px-4 py-6 w-full md:w-80">
               <form className="relative overflow-visible" autoComplete="off">
-                <input
-                  type="text"
-                  className="caret-rise-primary font-bold text-xl w-full placeholder:text-rise-grayscale-gray400 focus:outline-none"
-                  placeholder="Event name"
-                  onChange={handleTitleChange}
-                />
+                <EventName />
 
                 {!!suggestions && suggestions.length > 0 && (
                   <div className="absolute top-9 w-72 bg-rise-grayscale-white drop-shadow-elevation-400 rounded-lg px-1 py-1 space-y-1">
