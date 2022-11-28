@@ -1,0 +1,13 @@
+import { useEventStore } from '../EventStore';
+import Person from '../types/Person';
+import Attendee from './Attendee';
+
+function Attendees() {
+  const { attendees } = useEventStore();
+
+  return attendees.map((attendee: Person) => (
+    <Attendee key={attendee.id.toString()} {...attendee} />
+  ));
+}
+
+export default Attendees;

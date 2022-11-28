@@ -7,7 +7,7 @@ function Candidate({ id, name, email }: Person) {
 
   return (
     <button
-      onClick={(e) => addAttendee(id)}
+      onClick={() => addAttendee(id)}
       className="flex items-center text-left py-1 rounded-lg w-full hover:bg-rise-grayscale-gray50"
     >
       <img src={avatar} className="h-6 w-6 mx-2 rounded-full" alt={name} />

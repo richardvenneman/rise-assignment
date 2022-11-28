@@ -1,6 +1,6 @@
 import { Observer } from 'mobx-react-lite';
 
-import Attendee from './components/Attendee';
+import Attendees from './components/Attendees';
 import Candidate from './components/Candidate';
 import EventName from './components/EventName';
 import { EventStoreProvider, useEventStore } from './EventStore';
@@ -43,7 +43,7 @@ const App = () => {
     <EventStoreProvider people={people}>
       <Observer>
         {() => {
-          const { attendees, suggestions } = useEventStore();
+          const { suggestions } = useEventStore();
 
           return (
             <div className="flex flex-wrap h-screen">
@@ -65,9 +65,7 @@ const App = () => {
                     Attendees
                   </div>
                   <div className="space-y-1">
-                    {attendees.map((attendee: Person) => (
-                      <Attendee key={attendee.id.toString()} {...attendee} />
-                    ))}
+                    <Attendees />
                   </div>
                 </div>
               </aside>
