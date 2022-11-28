@@ -15,7 +15,26 @@ export default class EventStore {
   name = '';
   setName = (name: string) => {
     this.name = name;
+
+    if (this.shouldSuggest) {
+      this.setSuggestions();
+    }
   };
+
+  get shouldSuggest(): boolean {
+    return this.name.length > 2;
+  }
+
+  suggestions: Person[] = [];
+  setSuggestions() {
+    this.suggestions = this.people.filter((person) => {
+      return (
+        !this.attendees.find((attendee) => {
+          return attendee.id === person.id;
+        }) && person.name.toLowerCase().includes(this.name.toLowerCase())
+      );
+    });
+  }
 
   attendees: Person[] = [];
   addAttendee = (id: number) => {
@@ -27,24 +46,6 @@ export default class EventStore {
       this.attendees.push(attendee);
     }
   };
-
-  get shouldSuggest(): boolean {
-    return this.name.length > 2;
-  }
-
-  get suggestions(): Person[] {
-    if (!this.shouldSuggest) {
-      return [];
-    } else {
-      return this.people.filter((person) => {
-        return (
-          !this.attendees.find((attendee) => {
-            return attendee.id === person.id;
-          }) && person.name.toLowerCase().includes(this.name.toLowerCase())
-        );
-      });
-    }
-  }
 }
 
 const EventStoreContext = React.createContext<EventStore>(null as unknown as EventStore);

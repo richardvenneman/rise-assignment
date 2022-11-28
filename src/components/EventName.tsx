@@ -1,3 +1,5 @@
+import { observer } from 'mobx-react-lite';
+
 import { useEventStore } from '../EventStore';
 
 function EventName() {
@@ -15,4 +17,4 @@ function EventName() {
   );
 }
 
-export default EventName;
+export default observer(EventName);

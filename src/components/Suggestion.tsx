@@ -1,7 +1,7 @@
 import { useEventStore } from '../EventStore';
 import Person from '../types/Person';
 
-function Candidate({ id, name, email }: Person) {
+function Suggestion({ id, name, email }: Person) {
   const { addAttendee } = useEventStore();
   const avatar = new URL(`../assets/avatars/${id}.jpeg`, import.meta.url).href;
 
@@ -23,4 +23,4 @@ function Candidate({ id, name, email }: Person) {
   );
 }
 
-export default Candidate;
+export default Suggestion;
