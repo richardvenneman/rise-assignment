@@ -1,4 +1,5 @@
-import checkMarkCircle from '../assets/icons/Checkmark-Circle.svg';
+/// <reference types="vite-plugin-svgr/client" />
+import { ReactComponent as CheckMarkCircle } from '../assets/icons/Checkmark-Circle.svg';
 import Person from '../types/Person';
 import { fullName } from '../utils/personUtils';
 
@@ -11,7 +12,7 @@ function Attendee({ person }: { person: Person }) {
       <div>
         <div className="text-s font-medium leading-none">{fullName(person)}</div>
         <div className="flex leading-none pt-[1px]">
-          <img className="w-3 h-3" src={checkMarkCircle} alt="" />
+          <CheckMarkCircle className="w-3 h-3" />
           <span className="ml-[2px] mt-[1px] text-xxs text-rise-grayscale-gray600 font-medium">
             Available
           </span>
