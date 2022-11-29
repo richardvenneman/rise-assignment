@@ -37,9 +37,33 @@ function getPeople() {
     },
     {
       id: 6,
+      firstName: 'Daniel',
+      lastName: 'Khaapamyaki',
+      email: 'daniel@risecalendar.com',
+    },
+    {
+      id: 7,
       firstName: 'Richard',
       lastName: 'Venneman',
       email: 'richardvenneman@me.com',
+    },
+    {
+      id: 8,
+      firstName: 'Emily',
+      lastName: 'Gevalli',
+      email: 'emily.g@gmail.com',
+    },
+    {
+      id: 9,
+      firstName: 'Emielio',
+      lastName: 'Castillo',
+      email: 'ecastillo@google.com',
+    },
+    {
+      id: 10,
+      firstName: 'Ricciaro',
+      lastName: 'Something',
+      email: 'ricciardio@gmail.com',
     },
   ];
 }
