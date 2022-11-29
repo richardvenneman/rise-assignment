@@ -9,7 +9,7 @@ function Suggestion({ person }: { person: Person }) {
   return (
     <button
       onClick={() => addAttendee(person.id)}
-      className="flex items-center text-left py-1 rounded-lg w-full hover:bg-rise-grayscale-gray50"
+      className="flex items-center text-left py-1 rounded-md w-full hover:bg-rise-grayscale-gray50"
     >
       <img src={avatar} className="h-6 w-6 mx-2 rounded-full" alt={fullName(person)} />
       <div>
@@ -17,7 +17,7 @@ function Suggestion({ person }: { person: Person }) {
           className="text-s font-medium leading-none"
           dangerouslySetInnerHTML={{ __html: fullName(person) }}
         ></div>
-        <div className="leading-none pt-[1px]">
+        <div className="leading-none mt-[-4px] pt-[1px]">
           <span
             className="mt-[1px] text-xxs text-rise-grayscale-gray600 font-medium"
             dangerouslySetInnerHTML={{ __html: person.email }}
