@@ -26,7 +26,7 @@ export default class EventStore {
   }
 
   get shouldSuggest(): boolean {
-    return this.nameLastWord.length > 2;
+    return !this.name.endsWith(' ') && this.nameLastWord.length > 2;
   }
 
   suggestions: Person[] = [];
