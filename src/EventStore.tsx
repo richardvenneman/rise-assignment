@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import React, { useContext, useRef } from 'react';
 
 import Person from './types/Person';
+import { personWithMatches } from './utils/personUtils';
 
 export default class EventStore {
   constructor(people: Person[]) {
@@ -31,13 +32,14 @@ export default class EventStore {
 
   suggestions: Person[] = [];
   setSuggestions() {
-    this.suggestions = this.people.filter((person) => {
-      return (
-        !this.attendees.find((attendee) => {
-          return attendee.id === person.id;
-        }) && person.firstName.toLowerCase().includes(this.nameLastWord.toLowerCase())
-      );
-    });
+    this.suggestions = this.people
+      .filter((person) => {
+        return !this.isAttendee(person);
+      })
+      .map((person) => {
+        return personWithMatches(person, this.nameLastWord);
+      })
+      .filter((person): person is Person => !!person);
   }
 
   attendees: Person[] = [];
@@ -54,6 +56,12 @@ export default class EventStore {
       const newName = this.name.substring(0, lastWordIndex) + attendee.firstName;
       this.name = newName;
     }
+  };
+
+  isAttendee = (person: Person) => {
+    return this.attendees.find((attendee) => {
+      return attendee.id === person.id;
+    });
   };
 }
 

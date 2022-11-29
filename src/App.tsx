@@ -55,7 +55,7 @@ function App() {
           <form
             className="relative overflow-visible"
             autoComplete="off"
-            onSubmit={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
+            onSubmit={(e) => e.preventDefault()}
           >
             <EventName />
             <Suggestions />

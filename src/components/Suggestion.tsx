@@ -13,11 +13,15 @@ function Suggestion({ person }: { person: Person }) {
     >
       <img src={avatar} className="h-6 w-6 mx-2 rounded-full" alt={fullName(person)} />
       <div>
-        <div className="text-s font-medium leading-none">{fullName(person)}</div>
+        <div
+          className="text-s font-medium leading-none"
+          dangerouslySetInnerHTML={{ __html: fullName(person) }}
+        ></div>
         <div className="leading-none pt-[1px]">
-          <span className="mt-[1px] text-xxs text-rise-grayscale-gray600 font-medium">
-            {person.email}
-          </span>
+          <span
+            className="mt-[1px] text-xxs text-rise-grayscale-gray600 font-medium"
+            dangerouslySetInnerHTML={{ __html: person.email }}
+          ></span>
         </div>
       </div>
     </button>

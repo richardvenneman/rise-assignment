@@ -12,6 +12,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "highlight-words": "^1.2.1",
     "mobx": "^6.7.0",
     "mobx-react-lite": "^3.4.0",
     "react": "^18.2.0",
