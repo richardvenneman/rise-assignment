@@ -12,6 +12,11 @@ export default class EventStore {
   }
 
   people: Person[] = [];
+  findPerson = (id: number) => {
+    return this.people.find((person) => {
+      return person.id === id;
+    });
+  };
 
   name = '';
   setName = (name: string) => {
@@ -20,6 +25,12 @@ export default class EventStore {
     if (this.shouldSuggest) {
       this.setSuggestions();
     }
+  };
+
+  addAttendeeToName = (attendee: Person) => {
+    const lastWordIndex = this.name.lastIndexOf(this.nameLastWord);
+    const newName = this.name.substring(0, lastWordIndex) + attendee.firstName;
+    this.name = newName;
   };
 
   get nameLastWord(): string {
@@ -44,17 +55,12 @@ export default class EventStore {
 
   attendees: Person[] = [];
   addAttendee = (id: number) => {
-    const attendee = this.people.find((person) => {
-      return person.id === id;
-    });
+    const attendee = this.findPerson(id);
 
     if (attendee) {
       this.attendees.push(attendee);
+      this.addAttendeeToName(attendee);
       this.suggestions = [];
-
-      const lastWordIndex = this.name.lastIndexOf(this.nameLastWord);
-      const newName = this.name.substring(0, lastWordIndex) + attendee.firstName;
-      this.name = newName;
     }
   };
 
